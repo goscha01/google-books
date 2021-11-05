@@ -1,0 +1,23 @@
+
+
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Book title"  >
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="button" (click)='showServerResult()'>
+      <i class="bi bi-search"></i>
+      Show Name</button>
+  </div>
+</div>
+
+<h2>query here {{ searchQuery }}</h2>
+
+
+<h2>{{ defaultBook.message }}</h2>
+
+
+
+<div *ngFor="let book of books">
+
+  <app-book-tile [bookName]='book'></app-book-tile>
+</div>
+<button class="btn btn-outline-secondary" type="button" (click)='getQueryResult()'>Show books</button>

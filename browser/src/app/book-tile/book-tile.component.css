@@ -1,0 +1,33 @@
+
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+
+}
+.card {
+  width: 80%;
+  margin: 0 auto;
+  color: rgb(66,133,244);
+}
+.card-title {
+
+}
+.card-subtitle {
+  display: inline-flex;
+  padding-right: 1rem;
+
+}
+
+h6{
+  padding-right: 1rem;
+  color: rgb(66,133,244);
+  font-weight: 400;
+}
+
+.year {
+  color: rgb(34, 33, 33)
+}
+
+p {
+  color: rgb(34, 33, 33)
+}

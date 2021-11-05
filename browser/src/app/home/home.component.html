@@ -1,0 +1,26 @@
+ <div class="search">
+    <img
+      src="https://www.google.com/intl/en_ALL/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+      alt="google logo"
+    />
+    <p class="books">Books</p>
+
+    <form class="form-inline" (ngSubmit)="onSubmit()" #courseForm="ngForm">
+      <div class="input-group mb-3">
+        <input
+          name="bookSearch"
+          class="form-control"
+          type="text"
+          placeholder="Type a book name"
+          [(ngModel)]="searchQuery"
+        />
+        <div class="input-group-append">
+          <button class="btn btn-primary search-button">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+    <p>Search the world's most comprehensive index of full-text books.</p>
+    <a [routerLink]="['/books']">My library</a>
+  </div>
