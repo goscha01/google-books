@@ -14,21 +14,18 @@ import { Book } from './book';
 export class BookService {
   constructor(private http: HttpClient) { }
 
-  getBook(): Observable<any> {
-    return this.http.get<any>('http://localhost:8000/name').pipe(
-      tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
+  getBookQueryParam(param:string): Observable<any>{
+    console.log(`getBookQueryParam(${param})`)
+    return this.http.get<Book>('http://localhost:8000/query/'+param).pipe(
+      // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
+      // tap((data: any) => JSON.stringify(data)),
       catchError(this.handleError));
+
   }
 
-  getFullBookData(): Observable<any>{
-    return this.http.get<any>('http://localhost:8000/data').pipe(
-      tap((data: any) => JSON.stringify(data)),
-      catchError(this.handleError));
-  }
-
-  getBookQuery(): Observable<any>{
-    console.log(' getBookQuery()')
-    return this.http.get<any>('http://localhost:8000/query').pipe(
+  getBookFromShelf(userId:number): Observable<any>{
+    console.log(`getBookQueryParam(${userId})`)
+    return this.http.get<any>('http://localhost:8000/shelf/'+userId).pipe(
       // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
       tap((data: any) => JSON.stringify(data)),
       catchError(this.handleError));

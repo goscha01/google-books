@@ -1,0 +1,7 @@
+<p>shelf works!</p>
+<h3>{{ userId }}</h3>
+<div *ngFor="let book of books">
+
+  <app-book-tile [bookItem]='book'></app-book-tile>
+</div>
+<button (click)="getData()">get data</button>

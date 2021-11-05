@@ -9,13 +9,15 @@ import { BookService } from './books/book.service';
 import { BooksComponent } from './books/books.component';
 import { BookTileComponent } from './book-tile/book-tile.component';
 import { HomeComponent } from './home/home.component';
+import { ShelfComponent } from './shelf/shelf.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BooksComponent,
     BookTileComponent,
-    HomeComponent
+    HomeComponent,
+    ShelfComponent
   ],
   imports: [
     BrowserModule,

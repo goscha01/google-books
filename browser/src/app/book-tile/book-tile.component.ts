@@ -8,23 +8,15 @@ import { BookService } from '../books/book.service';
 })
 export class BookTileComponent implements OnInit {
 
-  @Input() bookName: any;
+  @Input() bookItem: any;
 
-  allBooks!:any;
-  errorMessage!:string;
 
-  constructor(private bookService: BookService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.ShowAllBooks()
 
   }
 
-  ShowAllBooks() {
-      this.bookService.getFullBookData().subscribe(
-      (book: any) => this.allBooks = book,
-      (error: any) => this.errorMessage = error as any)
 
-  }
 
 }

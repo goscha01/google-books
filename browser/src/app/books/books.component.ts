@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Book } from './book';
 import { BookService } from './book.service';
 
 
@@ -8,41 +9,35 @@ import { BookService } from './book.service';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
-  defaultBook:any = "testBook";
   errorMessage!: string;
-  books!:any;
-  searchQuery:String = 'flowers';
+  books!:Book[];
+  searchQuery:string = 'flower';
   submitted: boolean = false;
 
   constructor(private bookService: BookService) { }
 
   ngOnInit(): void {
-    this.getQueryResult()
-    console.log(this.books)
+    this.getQueryParamResult()
+    // console.log(this.books)
   }
 
   onSubmit() {
     console.log('onSubmit')
+    this.submitted = true;
 
-    this.submitted = true; }
+  }
 
-    getDefaultBook(): void {
-      this.bookService.getBook().subscribe(
-        (book: any) => this.defaultBook = book,
-        (error: any) => this.errorMessage = error as any);
-    }
+  getQueryParamResult(): void {
+    console.log('getQueryResult()')
+    this.bookService.getBookQueryParam(this.searchQuery).subscribe(
+      (books:any) => this.books = books.items,
+      (error: any) => this.errorMessage = error as any);
+  }
 
-    showServerResult() {
-      this.getDefaultBook()
-      console.log('test')
-      console.log(this.books )
-    }
+  showServerResult() {
+    console.log('showServerResult()')
+    this.getQueryParamResult()
+    console.log(this.books )
+  }
 
-    getQueryResult(): void {
-      console.log('getQueryResult()')
-      this.bookService.getBookQuery().subscribe(
-        (books:any) => this.books = books.data.items,
-        (error: any) => this.errorMessage = error as any);
-
-    }
 }

@@ -17,23 +17,17 @@ export class AppComponent {
   constructor(private bookService: BookService, private router: Router) { }
 
 
-  getDefaultBook(): void {
-    this.bookService.getBook().subscribe(
-      (book: any) => this.defaultBook = book,
-      (error: any) => this.errorMessage = error as any);
-  }
+
 
   showServerResult() {
-    this.getDefaultBook()
-    console.log('test')
+    console.log('search query home' + this.searchQuery)
   }
 
 
   onSubmit() {
-    console.log('onSubmit')
-    console.log(this.searchQuery)
+    // console.log('onSubmit')
     this.router.navigate(['/books']);
-    this.showServerResult()
+    // this.showServerResult()
      }
 }
 

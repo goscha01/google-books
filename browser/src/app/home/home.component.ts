@@ -17,32 +17,15 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  getDefaultBook(): void {
-    this.bookService.getBook().subscribe(
-      (book: any) => this.defaultBook = book,
-      (error: any) => this.errorMessage = error as any);
-  }
-
-  getQueryResult(): void {
-    this.bookService.getBookQuery().subscribe(
-      (books:any[]) => this.books = books,
-      (error: any) => this.errorMessage = error as any);
-  }
 
   showServerResult() {
-    console.log('showServerResult()')
-    this.getDefaultBook()
-    console.log('getDefaultBook()')
-    this.getQueryResult()
-    console.log('getQueryResult()')
-    console.log(this.books)
+    console.log('showServerResult')
+    console.log(this.searchQuery)
 
   }
-
 
   onSubmit() {
     console.log('onSubmit')
-    console.log(this.searchQuery)
     this.router.navigate(['/books']);
     this.showServerResult()
      }
