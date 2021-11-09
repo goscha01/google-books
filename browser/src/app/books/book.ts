@@ -1,12 +1,12 @@
 export class Book {
   constructor(
-    public tirle: string,
+    public title: string,
     public subtitle: string,
     public authors: string[],
-    public sescription : string,
+    public description : string,
     public categories: string [],
     public pablisher: string,
-    public publisherDate: Date,
+    public publisherDate: string,
     public previewLink: string,
     public coverImage: string
   ){}

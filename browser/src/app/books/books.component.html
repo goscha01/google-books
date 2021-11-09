@@ -1,15 +1,18 @@
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Book title"  [(ngModel)]="searchQuery">
-  <div class="input-group-append">
-    <button class="btn btn-outline-secondary" type="button" (click)='showServerResult()'>
-      <i class="bi bi-search"></i>
-      Show Name</button>
+
+
+<app-search-bar [navigationFunction]="dummy" (querySendingEvent)='receiveQuery($event)'></app-search-bar>
+<h5 class="alert alert-success ">Your current search request is: {{searchQuery}}</h5>
+<div *ngIf='books && !isInitialQueryEmpty'>
+  <div *ngFor="let book of books">
+
+    <app-book-tile [bookItem]='book' ></app-book-tile>
   </div>
 </div>
-<h5>Your current search request is: {{searchQuery}}</h5>
+<h5 class="alert alert-info ">Recomended books</h5>
+<div *ngIf='isInitialQueryEmpty'>
+  <div *ngFor="let book of books">
 
-<div *ngFor="let book of books">
-
-  <app-book-tile [bookItem]='book'></app-book-tile>
+    <app-book-tile [bookItem]='book' ></app-book-tile>
+  </div>
 </div>
 <button class="btn btn-outline-secondary" type="button" (click)='showServerResult()'>Show books</button>

@@ -1,0 +1,67 @@
+<div class="container">
+  <h5 class="alert alert-info ">Books database</h5>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-outline-secondary" (click)="getData()">
+        Get data
+      </button>
+      <!-- <button class="btn btn-outline-secondary" (click)="putData()">
+        Put book
+      </button> -->
+      <button class="btn btn-outline-secondary" (click)="deleteData()">
+        Delete book
+      </button>
+      <button class="btn btn-outline-secondary" (click)="deleteAllData()">
+        Delete all
+      </button>
+    </div>
+    <div class="col">
+<div class="row">
+  <div class="col">
+    <p style="text-align: right">Sort</p>
+  </div>
+  <div class="col">
+ <select
+        class="form-select"
+        aria-label="Sort the list"
+        id="sorting"
+        [(ngModel)]="sortoption"
+      >
+        <option value="id">ID</option>
+        <option value="searchword">Query</option>
+        <option value="date">Date</option>
+        <option value="favorit">Favorite</option>
+      </select>
+  </div>
+</div>
+
+
+    </div>
+
+  </div>
+
+  <div *ngIf="books">
+    <table class="table table-light">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Book Id</th>
+          <th>Title</th>
+          <th>Query</th>
+          <th>Dat&Time</th>
+          <th>Favorite</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let book of books | sort: sortoption">
+        <tr>
+          <td>{{ book.id }}</td>
+          <td>{{ book.bookid }}</td>
+          <td>{{ book.title }}</td>
+          <td>{{ book.searchword }}</td>
+          <td>{{ book.tstamp }}</td>
+          <td>{{ book.favorit }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

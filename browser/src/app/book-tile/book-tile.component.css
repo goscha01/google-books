@@ -17,6 +17,12 @@
 
 }
 
+button {
+
+  margin-left: 10px;
+
+}
+
 h6{
   padding-right: 1rem;
   color: rgb(66,133,244);
@@ -30,3 +36,7 @@ h6{
 p {
   color: rgb(34, 33, 33)
 }
+ a {
+   padding-left: 2rem;
+   padding-right: 2rem;
+ }

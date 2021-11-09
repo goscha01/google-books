@@ -3,12 +3,12 @@ import { Book } from '../books/book';
 import { BookService } from '../books/book.service';
 
 @Component({
-  selector: 'app-shelf',
-  templateUrl: './shelf.component.html',
-  styleUrls: ['./shelf.component.css']
+  selector: 'app-db-table',
+  templateUrl: './db-table.component.html',
+  styleUrls: ['./db-table.component.css']
 })
-export class ShelfComponent implements OnInit {
-
+export class DbTableComponent implements OnInit {
+  sortoption: string = '';
   userId=106147279438994271509
   books!:any[]
   errorMessage!:string
@@ -32,6 +32,7 @@ export class ShelfComponent implements OnInit {
 
   ngOnInit(): void {
     this.getQueryParamResult()
+
   }
 
   getQueryParamResult(): void {
@@ -71,4 +72,5 @@ export class ShelfComponent implements OnInit {
       (error: any) => this.errorMessage = error as any);
       window.location.reload(); //remove or change for hook
   }
+
 }

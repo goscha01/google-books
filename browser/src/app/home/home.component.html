@@ -5,22 +5,7 @@
     />
     <p class="books">Books</p>
 
-    <form class="form-inline" (ngSubmit)="onSubmit()" #courseForm="ngForm">
-      <div class="input-group mb-3">
-        <input
-          name="bookSearch"
-          class="form-control"
-          type="text"
-          placeholder="Type a book name"
-          [(ngModel)]="searchQuery"
-        />
-        <div class="input-group-append">
-          <button class="btn btn-primary search-button">
-            <i class="bi bi-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
+    <app-search-bar [navigationFunction]="navigation"  (querySendingEvent)='receiveQuery($event)'></app-search-bar>
     <p>Search the world's most comprehensive index of full-text books.</p>
     <a [routerLink]="['/shelf']">My library</a>
   </div>

@@ -11,25 +11,64 @@ import { Book } from './book';
 })
 
 
+
+
 export class BookService {
+
+  qureyData!:any[]
+  query!:string;
+
   constructor(private http: HttpClient) { }
 
   getBookQueryParam(param:string): Observable<any>{
     console.log(`getBookQueryParam(${param})`)
-    return this.http.get<Book>('http://localhost:8000/query/'+param).pipe(
+    return this.http.get<any>('http://localhost:8000/query/'+param).pipe(
       // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
+      // tap((data: any) => JSON.stringify(data)),
+      // tap((data: any) => this.qureyData = data),
+      catchError(this.handleError));
+
+  }
+
+  getBooksFromDB(): Observable<any>{
+     return this.http.get<any>('http://localhost:8000/db/').pipe(
+      // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
+      tap((data: any) => JSON.stringify(data)),
+      catchError(this.handleError));
+
+  }
+
+
+  PutBookOnShelf(book:any): Observable<any>{
+    console.log(`PutBookOnShelf(${book})`)
+    return this.http.get<any>('http://localhost:8000/shelf/'+book).pipe(
+      tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
       // tap((data: any) => JSON.stringify(data)),
       catchError(this.handleError));
 
   }
 
-  getBookFromShelf(userId:number): Observable<any>{
-    console.log(`getBookQueryParam(${userId})`)
-    return this.http.get<any>('http://localhost:8000/shelf/'+userId).pipe(
+  deleteBookOnShelf(): Observable<any>{
+    console.log(`deleteBookOnShelf()`)
+    return this.http.get<any>('http://localhost:8000/delete/').pipe(
       // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
       tap((data: any) => JSON.stringify(data)),
       catchError(this.handleError));
+  }
+  deleteAllOnShelf(): Observable<any>{
+    console.log(`deleteBookOnShelf()`)
+    return this.http.get<any>('http://localhost:8000/deleteall/').pipe(
+      // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
+      tap((data: any) => JSON.stringify(data)),
+      catchError(this.handleError));
+  }
 
+  getDataFromBoth() : Observable<any>{
+    console.log(`deleteBookOnShelf()`)
+    return this.http.get<any>('http://localhost:8000/both/').pipe(
+      tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
+      // tap((data: any) => JSON.stringify(data)),
+      catchError(this.handleError));
   }
 
   private handleError(err: HttpErrorResponse): Observable<any> {

@@ -1,6 +1,6 @@
 
-<div class="card"  *ngIf="bookItem">
-  <div class="card-horizontal">
+<div class="card"  *ngIf="bookItem.volumeInfo" >
+  <div class="card-horizontal" >
       <div class="img-square-wrapper">
         <img
         class="card-img-left"
@@ -10,7 +10,9 @@
       </div>
       <div class="card-body">
         <h4 class="card-title">{{ bookItem.volumeInfo.title  }}</h4>
+        <h5>{{bookItem.volumeInfo.subtitle}}</h5>
         <div class="card-subtitle">
+
           <div *ngFor="let author of bookItem.volumeInfo.authors">
             <h6 >{{author}}</h6>
           </div>
@@ -28,7 +30,55 @@
     <button class="btn btn-primary">
       Show Details
     </button>
+    <a href="{{bookItem.volumeInfo.previewLink}}" target="_blank">Open priview</a>
+    <button
+    class="btn"
+    [ngClass]="{'btn-outline-secondary': !isFavoriteButtonClicked,'btn-warning':isFavoriteButtonClicked}"
+  (click)="addToLibrary(bookItem.id)">
+     {{buttonLabel}}
+   </button>
+
   </div>
-  <p>{{bookItem.volumeInfo.previewLink}}</p>
+
+
+</div>
+
+<div class="card"  *ngIf="!bookItem.volumeInfo">
+  <div class="card-horizontal">
+      <div class="img-square-wrapper">
+        <img
+        class="card-img-left"
+        [src]="bookItem.coverimage"
+        alt="book thumbnail"
+      />
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">{{ bookItem.title  }}</h4>
+        <h5>{{bookItem.subtitle}}</h5>
+        <div class="card-subtitle">
+      <h6 >{{bookItem.authors}}</h6>
+        <h6 >"{{bookItem.pablisher}}"</h6>
+        <h6 class="year" >{{bookItem.publisherdate}}</h6>
+        </div>
+
+
+        <p class="card-text" >
+          {{ bookItem.descr | slice:1:500 }} ...
+        </p>
+      </div>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-primary">
+      Show Details
+    </button>
+    <a href="{{bookItem.previewLink}}" target="_blank">Open priview</a>
+    <button
+     class="btn"
+     [ngClass]="{'btn-outline-secondary': !isFavorite,'btn-warning':isFavorite}"
+   (click)="addToLibrary(bookItem.bookid)">
+      {{buttonLabel}}
+    </button>
+  </div>
+
 
 </div>

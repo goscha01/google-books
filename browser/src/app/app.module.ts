@@ -10,6 +10,9 @@ import { BooksComponent } from './books/books.component';
 import { BookTileComponent } from './book-tile/book-tile.component';
 import { HomeComponent } from './home/home.component';
 import { ShelfComponent } from './shelf/shelf.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import { DbTableComponent } from './db-table/db-table.component';
+import { SortPipe } from './sort.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { ShelfComponent } from './shelf/shelf.component';
     BooksComponent,
     BookTileComponent,
     HomeComponent,
-    ShelfComponent
+    ShelfComponent,
+    SearchBarComponent,
+    DbTableComponent,
+    SortPipe
   ],
   imports: [
     BrowserModule,
