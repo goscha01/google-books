@@ -8,7 +8,7 @@ import { BookService } from '../books/book.service';
   styleUrls: ['./shelf.component.css']
 })
 export class ShelfComponent implements OnInit {
-
+  sortoption: string = '';
   userId=106147279438994271509
   books!:any[]
   errorMessage!:string
@@ -31,9 +31,16 @@ export class ShelfComponent implements OnInit {
   constructor(private bookService: BookService) { }
 
   ngOnInit(): void {
-    this.getQueryParamResult()
+    this.getAllBooksFromShelf()
   }
 
+  getAllBooksFromShelf() {
+    console.log('getAllBooksFromShelf()')
+    this.bookService.GetBooksFromShelf().subscribe(
+      (books:any) => this.books = books,
+      (error: any) => this.errorMessage = error as any);
+
+  }
   getQueryParamResult(): void {
     console.log('getQueryResult()')
     this.bookService.getBooksFromDB().subscribe(

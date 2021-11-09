@@ -1,10 +1,46 @@
-<p>shelf works!</p>
-<h3>{{ userId }}</h3>
-<div *ngFor="let book of books">
+<div class="container">
+  <h5 class="alert alert-info">Your Library</h5>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-outline-secondary" (click)="getData()">
+        Get data
+      </button>
+      <!-- <button class="btn btn-outline-secondary" (click)="putData()">
+        Put book
+      </button> -->
+      <button class="btn btn-outline-secondary" (click)="deleteData()">
+        Delete book
+      </button>
+      <button class="btn btn-outline-secondary" (click)="deleteAllData()">
+        Delete all
+      </button>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col">
+          <p style="text-align: right">Sort</p>
+        </div>
+        <div class="col">
+          <select
+            class="form-select"
+            aria-label="Sort the list"
+            id="sorting"
+            [(ngModel)]="sortoption"
+          >
+            <option value="id">ID</option>
+            <option value="searchword">Query</option>
+            <option value="date">Date</option>
+            <option value="favorit">Favorite</option>
+          </select>
+        </div>
+      </div>
 
-  <app-book-tile [bookItem]='book'></app-book-tile>
+
+    </div>
+  </div>
+
 </div>
-<button (click)="getData()">get data</button>
-<button (click)="putData()">put book</button>
-<button (click)="deleteData()">deete book</button>
-<button (click)="deleteAllData()">deete all</button>
+
+<div *ngFor="let book of books | sort: sortoption">
+  <app-book-tile [bookItem]="book"></app-book-tile>
+</div>

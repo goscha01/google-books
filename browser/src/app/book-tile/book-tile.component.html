@@ -31,12 +31,10 @@
       Show Details
     </button>
     <a href="{{bookItem.volumeInfo.previewLink}}" target="_blank">Open priview</a>
-    <button
+    <input type="button"
     class="btn"
     [ngClass]="{'btn-outline-secondary': !isFavoriteButtonClicked,'btn-warning':isFavoriteButtonClicked}"
-  (click)="addToLibrary(bookItem.id)">
-     {{buttonLabel}}
-   </button>
+  (click)="addToLibrary(bookItem.id)" [value]="isFavoriteButtonClicked?'Remove from Library':'Add to Library'">
 
   </div>
 
@@ -72,12 +70,11 @@
       Show Details
     </button>
     <a href="{{bookItem.previewLink}}" target="_blank">Open priview</a>
-    <button
+    <input type="button"
      class="btn"
-     [ngClass]="{'btn-outline-secondary': !isFavorite,'btn-warning':isFavorite}"
-   (click)="addToLibrary(bookItem.bookid)">
-      {{buttonLabel}}
-    </button>
+     [ngClass]="{'btn-outline-secondary': !isFavoriteButtonClicked,'btn-warning':isFavoriteButtonClicked}"
+   (click)="addToLibrary(bookItem.bookid)" [value]="isFavoriteButtonClicked?'Remove from Library':'Add to Library'">
+
   </div>
 
 

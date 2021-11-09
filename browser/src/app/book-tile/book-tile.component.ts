@@ -21,9 +21,9 @@ export class BookTileComponent implements OnInit {
   ngOnInit(): void {
     this.isFavorite = this.bookItem.favorit
     console.log('isFavorit ' + this.isFavorite)
-    !this.isFavorite? this.buttonLabel='Add to Library':this.buttonLabel='Remove from Library'
+    this.isFavorite? this.isFavoriteButtonClicked=true:this.isFavoriteButtonClicked=false
     console.log('buttonLabel ' + this.buttonLabel)
-
+    // this.toggleButton()
 
 
   }

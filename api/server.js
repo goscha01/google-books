@@ -22,6 +22,8 @@ const deleteAllQuery = 'TRUNCATE Books'
 const serchWordQuery = 'SELECT COUNT(1) FROM Books WHERE searchword = $1'
 const selectFromDB = 'SELECT * FROM Books WHERE searchword = $1'
 const updateFavoriteQuery = 'UPDATE Books SET favorit = $1 WHERE bookid = $2 RETURNING favorit ;'
+const selectAllFromShelfQuery = 'SELECT * FROM Books WHERE favorit = true'
+
 
 app.use(function (req, res, next) {
   //Enabling CORS
@@ -113,13 +115,13 @@ app.get('/query/:param', async (req, res) => {
 async function asyncConnectSingle(query, values = 0) {
   console.log('asyncConnectSingle');
   var result
-    console.log(query);
-      console.log(values);
+    // console.log(query);
+    //   console.log(values);
   const client = await pool.connect()
   try {
     const res = await client.query(query, values)
-    console.log(query);
-      console.log(values);
+    // console.log(query);
+    //   console.log(values);
     
     result = res
    
@@ -127,7 +129,7 @@ async function asyncConnectSingle(query, values = 0) {
     client.release()
   }
   // console.log(result.rows[0].title)
-  console.log(result)
+  // console.log(result)
   return result
 }
 //get/put multiple data from postgress db
@@ -160,6 +162,12 @@ async function asyncConnectBalk(query, values = 0) {
     // console.log(qres.rows)
     resalt.send(qres.rows)
 })
+//get all books which are favorite = true
+  app.get('/shelf/', async (req, resalt) => {
+    var qres = await asyncConnectSingle(selectAllFromShelfQuery)
+    // console.log(qres.rows)
+    resalt.send(qres.rows)
+})
 
 //Delete 1 book from shelf
 app.get('/delete/', async (req, resalt) => {
@@ -177,7 +185,7 @@ app.get('/deleteall/', async (req, resalt) => {
 //add book to db
 
 app.get('/shelf/:param', async (req, resalt) => {
-   console.log(req.params.param.split(','))
+  //  console.log(req.params.param.split(','))
    var qarr = req.params.param.split(',')
    var request = [qarr[0], qarr[1]]
    var qres = await asyncConnectSingle(updateFavoriteQuery, request)

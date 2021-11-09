@@ -47,6 +47,14 @@ export class BookService {
       catchError(this.handleError));
 
   }
+  GetBooksFromShelf(): Observable<any>{
+    console.log(`PutBookOnShelf()`)
+    return this.http.get<any>('http://localhost:8000/shelf/').pipe(
+      tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
+      // tap((data: any) => JSON.stringify(data)),
+      catchError(this.handleError));
+
+  }
 
   deleteBookOnShelf(): Observable<any>{
     console.log(`deleteBookOnShelf()`)
