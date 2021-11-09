@@ -8,7 +8,11 @@ The project is in development and the code is very dirty and isn't refactored. A
 ## Instructions
 To run the application you need:
 - git clone https://github.com/goscha01/google-books
+- cd google-books
 - npm i
+- cd browser
+- npm i
+- cd ..
 - npm run dev (runs server.js and ng serve simultaneously)
 or
 - node/nodemon api/server.js
