@@ -42,6 +42,7 @@ export class BooksComponent implements OnInit {
       },
       (error: any) => (this.errorMessage = error as any)
     );
+
   }
 
   dummy() {} //empty function because I need to pass something into search-bar conmponent. Find s;ution later

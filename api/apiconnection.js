@@ -18,41 +18,12 @@ module.exports.axiosCall = axiosCall;
       key: apiKey,
     },
   })
-  result =  {'dbData': mapDataForDB(response.data.items, req.params.param),
-              'renderData': mapDataForRendering(response.data.items, req.params.param)
-            }
-  return result
+  return  mapData(response.data.items, req.params.param) 
+   
 }
 
-
-
-
-
-module.exports.mapDataForDB = mapDataForDB;
-
-function mapDataForDB(apiData, searchword) {
-  var newApiData = apiData.map((data) => [
-    data.id,
-    data.volumeInfo.title ? data.volumeInfo.title : null,
-    data.volumeInfo.subtitle ? data.volumeInfo.subtitle : null,
-    data.volumeInfo.authors ? data.volumeInfo.authors[0] : null,
-    data.volumeInfo.description ? data.volumeInfo.description : null,
-    data.volumeInfo.categories ? data.volumeInfo.categories[0] : null,
-    data.volumeInfo.publisher ? data.volumeInfo.publisher : null,
-    data.volumeInfo.publishedDate ? data.volumeInfo.publishedDate : null,
-    data.volumeInfo.previewLink ? data.volumeInfo.previewLink : null,
-    data.volumeInfo.imageLinks
-      ? data.volumeInfo.imageLinks.smallThumbnail
-      : null,
-    searchword,
-    currentdate,
-  ]);
-  return newApiData;
-}
-
-module.exports.mapDataForRendering = mapDataForRendering;
-
-function mapDataForRendering(apiData, searchword) {
+//Maps api data to db format
+function mapData(apiData, searchword) {
   var newApiData = apiData.map((data) => ({
     bookid: data.id,
     title: data.volumeInfo.title ? data.volumeInfo.title : null,

@@ -24,6 +24,7 @@ export class DbTableComponent implements OnInit {
       (books: any) => (this.books = books),
       (error: any) => (this.errorMessage = error as any)
     );
+
   }
 
   //Delete a book with lowest ID

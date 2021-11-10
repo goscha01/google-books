@@ -23,9 +23,10 @@ app.get('/query/:param', async (req, res) => {
     } else {
       api.axiosCall(req, res)
       .then(response => {
-        db.conn(q.insertMultiQuery, response.dbData, 1);
         res.status(200);
-        res.send(response.renderData);
+        var dbData = response.map(item => Object.values(item)) //converts array of objects into array of arrays
+        db.conn(q.insertMultiQuery, dbData, 1);
+        res.send(response);
       })}
     })
   })
