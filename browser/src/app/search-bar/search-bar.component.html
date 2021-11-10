@@ -1,25 +1,17 @@
-
-
-
-
-<form class="form-inline" (ngSubmit)="onSubmit()"  #courseForm="ngForm">
-  <div  class="alert alert-danger" *ngIf="!isInputValid">
-    {{errorMessage}} {{searchQuery}}
-</div>
+<form class="form-inline" (ngSubmit)="onSubmit()">
+  <div class="alert alert-danger" *ngIf="!isInputValid">
+    {{ errorMessage }} {{ searchQuery }}
+  </div>
   <div class="input-group mb-3">
     <input
-       name="bookSearch"
+      name="bookSearch"
       class="form-control"
       type="text"
       placeholder="Type a search query"
       [(ngModel)]="searchQuery"
-      required
-      minlength="3"
-      name="query"
-      #query
     />
     <div class="input-group-append">
-      <button class="btn btn-primary search-button"  (click)="warning()">
+      <button class="btn btn-primary search-button" (click)="warning()">
         <i class="bi bi-search"></i>
       </button>
     </div>

@@ -1,9 +1,6 @@
-
-
 .search {
   text-align: center;
   margin-top: 15%;
-
 }
 .form-inline {
   width: 90%;
@@ -11,19 +8,17 @@
 }
 
 .books {
-  color: rgb(66,133,244);
+  color: rgb(66, 133, 244);
   top: -40px;
   right: -180px;
-  position:  relative;
+  position: relative;
   font-size: 1.5rem;
-
 }
 .search-button {
   color: white;
   margin-left: 10px;
-
 }
-i{
+i {
   padding-left: 20px;
   padding-right: 20px;
 }

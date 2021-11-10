@@ -1,11 +1,14 @@
- <div class="search">
-    <img
-      src="https://www.google.com/intl/en_ALL/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
-      alt="google logo"
-    />
-    <p class="books">Books</p>
+<div class="search">
+  <img
+    src="https://www.google.com/intl/en_ALL/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+    alt="google logo"
+  />
+  <p class="books">Books</p>
 
-    <app-search-bar [navigationFunction]="navigation"  (querySendingEvent)='receiveQuery($event)'></app-search-bar>
-    <p>Search the world's most comprehensive index of full-text books.</p>
-    <a [routerLink]="['/shelf']">My library</a>
-  </div>
+  <app-search-bar
+    [navigationFunction]="navigation"
+    (querySendingEvent)="receiveQuery($event)"
+  ></app-search-bar>
+  <p>Search the world's most comprehensive index of full-text books.</p>
+  <a [routerLink]="['/shelf']">My library</a>
+</div>

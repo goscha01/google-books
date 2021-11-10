@@ -1,82 +1,65 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, tap, retry, map  } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { catchError, tap } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
-import { HttpErrorResponse, HttpResponse  } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Book } from './book';
-
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
-
-
-
 export class BookService {
+  qureyData!: any[];
+  query!: string;
 
-  qureyData!:any[]
-  query!:string;
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getBookQueryParam(param:string): Observable<any>{
-    console.log(`getBookQueryParam(${param})`)
-    return this.http.get<any>('http://localhost:8000/query/'+param).pipe(
+  //Get query data from DB or API
+  getBookQueryParam(param: string): Observable<any> {
+    return this.http.get<any>('http://localhost:8000/query/' + param).pipe(
       // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
-      // tap((data: any) => JSON.stringify(data)),
-      // tap((data: any) => this.qureyData = data),
-      catchError(this.handleError));
-
+      catchError(this.handleError)
+    );
   }
 
-  getBooksFromDB(): Observable<any>{
-     return this.http.get<any>('http://localhost:8000/db/').pipe(
+  //Get query data from DB
+  getBooksFromDB(): Observable<any> {
+    return this.http.get<any>('http://localhost:8000/db/').pipe(
       // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
-      tap((data: any) => JSON.stringify(data)),
-      catchError(this.handleError));
-
+      catchError(this.handleError)
+    );
   }
 
-
-  PutBookOnShelf(book:any): Observable<any>{
-    console.log(`PutBookOnShelf(${book})`)
-    return this.http.get<any>('http://localhost:8000/shelf/'+book).pipe(
-      tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
-      // tap((data: any) => JSON.stringify(data)),
-      catchError(this.handleError));
-
+  //Add book to favorite (set favorite flag to true)
+  PutBookOnShelf(book: any): Observable<any> {
+    return this.http.get<any>('http://localhost:8000/shelf/' + book).pipe(
+      // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
+      catchError(this.handleError)
+    );
   }
-  GetBooksFromShelf(): Observable<any>{
-    console.log(`PutBookOnShelf()`)
+
+  //Get all book which have favorite = true
+  GetBooksFromShelf(): Observable<any> {
     return this.http.get<any>('http://localhost:8000/shelf/').pipe(
-      tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
-      // tap((data: any) => JSON.stringify(data)),
-      catchError(this.handleError));
-
-  }
-
-  deleteBookOnShelf(): Observable<any>{
-    console.log(`deleteBookOnShelf()`)
-    return this.http.get<any>('http://localhost:8000/delete/').pipe(
       // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
-      tap((data: any) => JSON.stringify(data)),
-      catchError(this.handleError));
+      catchError(this.handleError)
+    );
   }
-  deleteAllOnShelf(): Observable<any>{
-    console.log(`deleteBookOnShelf()`)
+
+  //Delete one book from DB
+  deleteBookFromDB(): Observable<any> {
+    return this.http.get<any>('http://localhost:8000/delete/').pipe(
+      tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
+      catchError(this.handleError)
+    );
+  }
+
+  //Delete all books from DB
+  deleteAllBooksFromDB(): Observable<any> {
     return this.http.get<any>('http://localhost:8000/deleteall/').pipe(
       // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
       tap((data: any) => JSON.stringify(data)),
-      catchError(this.handleError));
-  }
-
-  getDataFromBoth() : Observable<any>{
-    console.log(`deleteBookOnShelf()`)
-    return this.http.get<any>('http://localhost:8000/both/').pipe(
-      tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
-      // tap((data: any) => JSON.stringify(data)),
-      catchError(this.handleError));
+      catchError(this.handleError)
+    );
   }
 
   private handleError(err: HttpErrorResponse): Observable<any> {
@@ -94,4 +77,3 @@ export class BookService {
     return throwError(errMsg);
   }
 }
- 

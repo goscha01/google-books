@@ -7,19 +7,17 @@ import { HomeComponent } from './home/home.component';
 import { ShelfComponent } from './shelf/shelf.component';
 
 const routes: Routes = [
-{path:'', redirectTo: 'home', pathMatch: 'full'},
-{path:'home', component: HomeComponent},
-{path:'books', component: BooksComponent},
-{path:'tile', component: BookTileComponent},
-{path:'shelf', component: ShelfComponent},
-{path:'db', component: DbTableComponent},
-// {path:'register', loadChildren: () => import('./registration/registration.module')
-// .then(m => m.RegistrationModule)},
-// {path:'**', component:HomeComponent},
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'books', component: BooksComponent },
+  { path: 'tile', component: BookTileComponent },
+  { path: 'shelf', component: ShelfComponent },
+  { path: 'db', component: DbTableComponent },
+  { path: '**', component: HomeComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

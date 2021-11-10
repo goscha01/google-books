@@ -5,29 +5,20 @@ import { BookService } from '../books/book.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  searchQuery!: string;
 
-  searchQuery!:string
+  constructor(private bookService: BookService, private router: Router) {}
 
-
-  constructor( private bookService: BookService, private router: Router) { }
-
-  ngOnInit(): void {
-  }
-  receiveQuery(query:string) {
-    console.log('receiveQuery')
-    console.log(query)
+  ngOnInit(): void {}
+  receiveQuery(query: string) {
     this.searchQuery = query;
-    this.bookService.query = query
-    // this.getQueryParamResult(this.searchQuery)
-
+    this.bookService.query = query;
   }
 
-  navigation = ():void => {
+  navigation = (): void => {
     this.router.navigate(['/books']);
-    console.log('navigation')
-  }
-
+  };
 }

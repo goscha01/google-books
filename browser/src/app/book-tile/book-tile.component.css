@@ -1,42 +1,40 @@
-
 .card-horizontal {
   display: flex;
   flex: 1 1 auto;
-
 }
 .card {
   width: 80%;
   margin: 0 auto;
-  color: rgb(66,133,244);
+  color: rgb(66, 133, 244);
   margin-bottom: 1rem;
 }
 
 .card-subtitle {
   display: inline-flex;
   padding-right: 1rem;
-
 }
 
 button {
-
   margin-left: 10px;
-
 }
 
-h6{
+h6 {
   padding-right: 1rem;
-  color: rgb(66,133,244);
+  color: rgb(66, 133, 244);
   font-weight: 400;
 }
 
 .year {
-  color: rgb(34, 33, 33)
+  color: rgb(34, 33, 33);
 }
 
 p {
-  color: rgb(34, 33, 33)
+  color: rgb(34, 33, 33);
 }
- a {
-   padding-left: 2rem;
-   padding-right: 2rem;
- }
+a {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+img {
+  width: 160px;
+}

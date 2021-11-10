@@ -1,13 +1,7 @@
 <div class="container">
-  <h5 class="alert alert-info ">Books database</h5>
+  <h5 class="alert alert-info">Books database</h5>
   <div class="row">
     <div class="col">
-      <button class="btn btn-outline-secondary" (click)="getData()">
-        Get data
-      </button>
-      <!-- <button class="btn btn-outline-secondary" (click)="putData()">
-        Put book
-      </button> -->
       <button class="btn btn-outline-secondary" (click)="deleteData()">
         Delete book
       </button>
@@ -16,28 +10,25 @@
       </button>
     </div>
     <div class="col">
-<div class="row">
-  <div class="col">
-    <p style="text-align: right">Sort</p>
-  </div>
-  <div class="col">
- <select
-        class="form-select"
-        aria-label="Sort the list"
-        id="sorting"
-        [(ngModel)]="sortoption"
-      >
-        <option value="id">ID</option>
-        <option value="searchword">Query</option>
-        <option value="date">Date</option>
-        <option value="favorit">Favorite</option>
-      </select>
-  </div>
-</div>
-
-
+      <div class="row">
+        <div class="col">
+          <p style="text-align: right">Sort</p>
+        </div>
+        <div class="col">
+          <select
+            class="form-select"
+            aria-label="Sort the list"
+            id="sorting"
+            [(ngModel)]="sortoption"
+          >
+            <option value="id">ID</option>
+            <option value="searchword">Query</option>
+            <option value="date">Date</option>
+            <option value="favorite">Favorite</option>
+          </select>
+        </div>
+      </div>
     </div>
-
   </div>
 
   <div *ngIf="books">
@@ -59,7 +50,7 @@
           <td>{{ book.title }}</td>
           <td>{{ book.searchword }}</td>
           <td>{{ book.tstamp }}</td>
-          <td>{{ book.favorit }}</td>
+          <td>{{ book.favorite }}</td>
         </tr>
       </tbody>
     </table>
