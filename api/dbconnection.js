@@ -10,30 +10,28 @@ pool.on('error', (err, client) => {
     process.exit(-1)
   })
 
-
-//Connection to postgress db with static query
-module.exports.single = asyncConnectSingle
-  async function asyncConnectSingle(query, values = 0) {
-    const client = await pool.connect()
-    try {
-      const res = await client.query(query, values)
-      return res
-      } finally {
-      client.release()
-    }
-  }
-  
 //Connection to postgress db with dynamic multiple  query using pg-format
-  module.exports.balk = asyncConnectBalk
-    async function asyncConnectBalk(query, values = 0) {
+  module.exports.conn = asyncConnect
+    async function asyncConnect(query, values = 0, flag = 0) {
+     
       const client = await pool.connect()
-      try {
-       await client.query(format(query, values),[], (err, result)=>{
-          console.log(err);
-        })
-      } finally {
-        client.release()
+      if (flag) {
+         try {
+         await client.query(format(query, values),[])
+        } finally {
+          client.release()
+        }
+         formQuery = format(query, values)
+
+      } else {
+        try {
+          const res = await client.query(query, values)
+          return res
+          } finally {
+          client.release()
+        }
       }
+   
   }
 
 

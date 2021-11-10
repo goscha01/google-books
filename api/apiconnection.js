@@ -10,29 +10,25 @@ const bookUrl = process.env.BOOKS_URL;
 var currentdate = new Date();
 
 module.exports.axiosCall = axiosCall;
+ async function axiosCall(req, res) {
 
-function axiosCall(req, res) {
-  axios
-    .get(bookUrl, {
-      params: {
-        q: req.params.param,
-        key: apiKey,
-      },
-    })
-    .then((response) => {
-      if (response) {
-        var api = response.data.items;
-        var DbData = mapDataForDB(api, req.params.param);
-        var RenderData = mapDataForRendering(api, req.params.param);
-        dbconnection.balk(q.insertMultiQuery, DbData);
-        res.status(200);
-        res.send(RenderData);
-      } else {
-        res.status(404);
-        res.json({ message: `Oops! Cannot find ${req}` });
-      }
-    });
+  var response =  await axios.get(bookUrl, {
+    params: {
+      q: req.params.param,
+      key: apiKey,
+    },
+  })
+  result =  {'dbData': mapDataForDB(response.data.items, req.params.param),
+              'renderData': mapDataForRendering(response.data.items, req.params.param)
+            }
+  return result
 }
+
+
+
+
+
+module.exports.mapDataForDB = mapDataForDB;
 
 function mapDataForDB(apiData, searchword) {
   var newApiData = apiData.map((data) => [
@@ -53,6 +49,8 @@ function mapDataForDB(apiData, searchword) {
   ]);
   return newApiData;
 }
+
+module.exports.mapDataForRendering = mapDataForRendering;
 
 function mapDataForRendering(apiData, searchword) {
   var newApiData = apiData.map((data) => ({
