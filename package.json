@@ -20,9 +20,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node api/server.js",
+    "start": "nodemon api/server.js",
     "dev": " concurrently \"nodemon api/server.js\" \" cd browser && npm start\"",
-    "postinstall": "cd browser && npm i"
+    "postinstall": "cd browser && npm i && echo 'postinstall tiggerred!'",
+    "build": " echo 'cd browser'  && cd browser && echo 'ng build' && ng build && echo 'cd ..' && cd .. &&  echo 'npm start' && npm start"
   },
   "repository": {
     "type": "git",

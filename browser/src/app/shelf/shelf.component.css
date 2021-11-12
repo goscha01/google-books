@@ -6,3 +6,8 @@ button {
   margin-left: 10px;
   margin-bottom: 1rem;
 }
+.d-flex {
+  display: inline-block;
+line-height: normal;
+vertical-align: middle;
+}

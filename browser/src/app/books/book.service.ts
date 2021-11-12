@@ -10,12 +10,16 @@ import { Book } from './book';
 export class BookService {
   qureyData!: any[];
   query!: string;
+  // url:string = 'http://ec2-54-147-18-175.compute-1.amazonaws.com/' //aws node server
+  url: string = 'http://localhost:8080/' //local url
+  // url: string = 'http://node-server-google-books.us-east-1.elasticbeanstalk.com/' //ELB pipeline server url
+
 
   constructor(private http: HttpClient) {}
 
   //Get query data from DB or API
   getBookQueryParam(param: string): Observable<any> {
-    return this.http.get<any>('http://localhost:8000/query/' + param).pipe(
+    return this.http.get<any>(this.url + 'query/' + param).pipe(
       // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
       catchError(this.handleError)
     );
@@ -23,7 +27,7 @@ export class BookService {
 
   //Get query data from DB
   getBooksFromDB(): Observable<any> {
-    return this.http.get<any>('http://localhost:8000/db/').pipe(
+    return this.http.get<any>(this.url +'db/').pipe(
       // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
       catchError(this.handleError)
     );
@@ -31,7 +35,7 @@ export class BookService {
 
   //Add book to favorite (set favorite flag to true)
   PutBookOnShelf(book: any): Observable<any> {
-    return this.http.get<any>('http://localhost:8000/shelf/' + book).pipe(
+    return this.http.get<any>(this.url +'shelf/' + book).pipe(
       // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
       catchError(this.handleError)
     );
@@ -39,7 +43,7 @@ export class BookService {
 
   //Get all book which have favorite = true
   GetBooksFromShelf(): Observable<any> {
-    return this.http.get<any>('http://localhost:8000/shelf/').pipe(
+    return this.http.get<any>(this.url + 'shelf/').pipe(
       // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
       catchError(this.handleError)
     );
@@ -47,7 +51,7 @@ export class BookService {
 
   //Delete one book from DB
   deleteBookFromDB(): Observable<any> {
-    return this.http.get<any>('http://localhost:8000/delete/').pipe(
+    return this.http.get<any>(this.url +'delete/').pipe(
       tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
       catchError(this.handleError)
     );
@@ -55,7 +59,7 @@ export class BookService {
 
   //Delete all books from DB
   deleteAllBooksFromDB(): Observable<any> {
-    return this.http.get<any>('http://localhost:8000/deleteall/').pipe(
+    return this.http.get<any>(this.url +'deleteall/').pipe(
       // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
       tap((data: any) => JSON.stringify(data)),
       catchError(this.handleError)

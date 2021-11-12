@@ -2,22 +2,29 @@ require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
 const app = express();
-require("./routes")(app);
-const dbconnection = require("./dbconnection");
-const q = require("./queries");
-const apiKey = process.env.API_KEY;
-const bookUrl = process.env.BOOKS_URL;
+
+const API_KEY = 'AIzaSyC3WtNnKDXtglXeJLTPWVVzpPLGTyd59O4'
+BOOKS_URL = 'https://www.googleapis.com/books/v1/volumes?'
+
+// const apiKey = process.env.API_KEY;
+// const bookUrl = process.env.BOOKS_URL;
 var currentdate = new Date();
 
 module.exports.axiosCall = axiosCall;
  async function axiosCall(req, res) {
 
-  var response =  await axios.get(bookUrl, {
+  var response =  await axios.get(BOOKS_URL, {
     params: {
       q: req.params.param,
-      key: apiKey,
+      key: API_KEY,
     },
   })
+  // var response =  await axios.get(bookUrl, {
+  //   params: {
+  //     q: req.params.param,
+  //     key: apiKey,
+  //   },
+  // })
   return  mapData(response.data.items, req.params.param) 
    
 }

@@ -2,6 +2,7 @@
   "name": "full-stack-challenge",
   "version": "0.0.0",
   "scripts": {
+    "preinstall": "echo 'preinstall triggered!'",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",

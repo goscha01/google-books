@@ -1,9 +1,12 @@
 const format = require('pg-format');
 require('dotenv').config();
 const { Pool } = require('pg')
-const conString = process.env.POSTGRES_URL //check later, doesn't work for pool
-const connectionString = 'postgres://dviwjwhj:kz86i7OGuBGXCa6YAXPuivru98-k-CgC@fanny.db.elephantsql.com/dviwjwhj'
-const pool = new Pool({connectionString})
+const  POSTGRES_URL='postgres://dviwjwhj:kz86i7OGuBGXCa6YAXPuivru98-k-CgC@fanny.db.elephantsql.com/dviwjwhj'
+
+// const databaseConfig = { connectionString: process.env.POSTGRES_URL };
+const databaseConfig = { connectionString: POSTGRES_URL };
+const pool = new Pool(databaseConfig);
+
 
 pool.on('error', (err, client) => {
     console.error('Unexpected error on idle client', err)

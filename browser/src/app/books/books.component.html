@@ -10,11 +10,16 @@
     <app-book-tile [bookItem]="book"></app-book-tile>
   </div>
 </div>
+<div *ngIf="!books" class="d-flex justify-content-center">
+  <strong>Loading...</strong>
+  <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+</div>
 <h5 class="alert alert-info">Recomended books</h5>
 <div *ngIf="isInitialQueryEmpty">
   <div *ngFor="let book of books">
     <app-book-tile [bookItem]="book"></app-book-tile>
   </div>
 </div>
+
 
 

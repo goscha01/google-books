@@ -2,7 +2,7 @@ module.exports = {
     selectAllQuery: 'select * FROM Books',
     insertQuery : 'INSERT INTO Books (title, subtitle, authors, descr, categories, pablisher, publisherDate, previewLink, coverImage, searchword) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
     insertMultiQuery : 'INSERT INTO Books (bookid, title, subtitle, authors, descr, categories, pablisher, publisherDate, previewLink, coverImage, searchword, tstamp ) VALUES %L',
-    deleteQuery : 'DELETE FROM Books  WHERE id in (SELECT id FROM Books ORDER BY id asc LIMIT 1)',
+    deleteQuery : 'DELETE FROM Books  WHERE id in (SELECT id FROM Books ORDER BY id asc LIMIT 1) RETURNING bookid',
     deleteAllQuery : 'TRUNCATE Books',
     serchWordQuery : 'SELECT COUNT(1) FROM Books WHERE searchword = $1',
     selectFromDB : 'SELECT * FROM Books WHERE searchword = $1',
