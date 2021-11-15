@@ -18,18 +18,31 @@ Refactored and cleaned the code. Tested the app. Here is the list of bugs, worka
 - shelf component has to rerender after changing the favorite flag
 - check if DB has duplicates 
 - still not responsive design
+
+## UPDATE 2
+
+Fixed some issues,  tried to deploy the app on AWS and create an automated pipeline. Succeded with manual server deployment and hosting of static build code on S3 calling the server.
+Pipeline with Elastic Beanstalk still doesn't work.
+
 ### Instructions
 To run the application you need:
+# See the app deployed on AWS (delete function doesn't work though)
+- go to http://google-book-build-uploaded.s3-website-us-east-1.amazonaws.com/
+# OR install dependencies
 - git clone https://github.com/goscha01/google-books
 - cd google-books
 - npm i
-- cd browser
-- npm i
-- cd ..
+# AND run in a devevelopment mode
 - npm run dev (runs server.js and ng serve simultaneously)
-or
+- go to localhost:4200
+# OR manually run each application
 - node/nodemon api/server.js
 - cd browser
 - npm start
+- go to localhost:4200
+
+# OR run in production mode (also problem with delete function)
+- npm run build
+- go to localhost:8080
 
 
