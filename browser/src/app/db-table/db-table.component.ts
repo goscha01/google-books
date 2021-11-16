@@ -16,6 +16,7 @@ export class DbTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getQueryParamResult();
+    console.log(this.books)
   }
 
   //Get all data from DB

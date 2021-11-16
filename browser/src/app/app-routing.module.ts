@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'books', component: BooksComponent },
   { path: 'tile', component: BookTileComponent },
   { path: 'shelf', component: ShelfComponent },
-  { path: 'db', component: DbTableComponent },
+  { path: 'database', component: DbTableComponent },
   { path: '**', component: HomeComponent },
 ];
 

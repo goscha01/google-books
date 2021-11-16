@@ -5,14 +5,7 @@ const router = express.Router();
   const api = require('./apiconnection')
   const db = require  ('./dbconnection')
   const q = require('./queries');
-  
-  // app.use(function (req, res, next) {
-  //     //Enabling CORS
-  //     res.header("Access-Control-Allow-Origin", "*");
-  //     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,DELETE");
-  //     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
-  //     next();
-  //     });
+
   
   router.get('/', (req, res) => {
     res.send('main path / works on ELB!')
@@ -42,29 +35,28 @@ const router = express.Router();
     //Get all books from DB
     router.get('/db/', async (req, result) => {
         var qres = await db.conn(q.selectAllQuery)
-        console.log(qres.rows)
+
         result.send(qres.rows)
     })
     
     //Get all books which are favorite = true
     router.get('/shelf/', async (req, result) => {
         var qres = await db.conn(q.selectAllFromShelfQuery)
-        console.log(qres.rows)
+ 
         result.send(qres.rows)
     })
     
     //Delete 1 in a table in DB
     router.get('/delete/', async (req, result) => {
-      var qres = await db.conn(q.deleteQuery)
-      console.log(qres.rows)
-      result.send(qres.rows)
+
+     await db.conn(q.deleteQuery)
+
     })
   
     //Delete all book from DB
     router.get('/deleteall/', async (req, result) => {
-      var qres = await db.conn(q.deleteAllQuery)
-      console.log(qres.rows)
-      result.send(qres.rows)
+     await db.conn(q.deleteAllQuery)
+
     })
     
     //Add a favorit book to DB (flag favorite) book to db

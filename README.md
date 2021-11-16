@@ -41,7 +41,7 @@ To run the application you need:
 - npm start
 - go to localhost:4200
 
-# OR run in production mode (also problem with delete function)
+# OR run in production mode 
 - npm run build
 - go to localhost:8080
 

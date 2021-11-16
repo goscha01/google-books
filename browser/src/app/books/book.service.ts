@@ -10,8 +10,8 @@ import { Book } from './book';
 export class BookService {
   qureyData!: any[];
   query!: string;
-  url:string = 'http://ec2-54-147-18-175.compute-1.amazonaws.com/' //aws node server
-  // url: string = 'http://localhost:8080/' //local url
+  // url:string = 'http://ec2-54-147-18-175.compute-1.amazonaws.com/' //aws node server
+  url: string = 'http://localhost:8080/' //local url
   // url: string = 'http://node-server-google-books.us-east-1.elasticbeanstalk.com/' //ELB pipeline server url
 
 
