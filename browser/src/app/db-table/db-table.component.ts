@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from '../books/book';
 import { BookService } from '../books/book.service';
 
 @Component({
@@ -34,7 +33,7 @@ export class DbTableComponent implements OnInit {
       (books: any) => (this.books = books),
       (error: any) => (this.errorMessage = error as any)
     );
-    window.location.reload(); //remove or change for hook
+    this.getQueryParamResult(); //remove or change for hook
   }
 
   //Delete all books from DB
@@ -43,6 +42,6 @@ export class DbTableComponent implements OnInit {
       (books: any) => (this.books = books),
       (error: any) => (this.errorMessage = error as any)
     );
-    window.location.reload(); //remove or change for hook
+    this.getQueryParamResult(); //remove or change for hook
   }
 }

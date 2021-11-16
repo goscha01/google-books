@@ -18,6 +18,8 @@ export class ShelfComponent implements OnInit {
     this.getAllBooksFromShelf();
   }
 
+
+
   //Get all books with favorite = true flag
   getAllBooksFromShelf() {
     this.bookService.GetBooksFromShelf().subscribe(
