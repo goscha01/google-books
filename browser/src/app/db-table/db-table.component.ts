@@ -7,7 +7,7 @@ import { BookService } from '../books/book.service';
   styleUrls: ['./db-table.component.css'],
 })
 export class DbTableComponent implements OnInit {
-  sortoption!: string;
+  sortoption: string='0';
   books!: any[];
   errorMessage!: string;
 
@@ -15,11 +15,12 @@ export class DbTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getQueryParamResult();
-    console.log(this.books)
+
   }
 
   //Get all data from DB
   getQueryParamResult(): void {
+        console.log('getQueryParamResult')
     this.bookService.getBooksFromDB().subscribe(
       (books: any) => (this.books = books),
       (error: any) => (this.errorMessage = error as any)
@@ -28,12 +29,16 @@ export class DbTableComponent implements OnInit {
   }
 
   //Delete a book with lowest ID
-  deleteData() {
-    this.bookService.deleteBookFromDB().subscribe(
-      (books: any) => (this.books = books),
+  deleteData(bookId:any) {
+    console.log(bookId)
+    this.bookService.deleteBookFromDB(bookId).subscribe(
+      (books: any) => {
+        this.books = books
+        this.getQueryParamResult();
+      },
       (error: any) => (this.errorMessage = error as any)
     );
-    this.getQueryParamResult(); //remove or change for hook
+
   }
 
   //Delete all books from DB
@@ -42,6 +47,6 @@ export class DbTableComponent implements OnInit {
       (books: any) => (this.books = books),
       (error: any) => (this.errorMessage = error as any)
     );
-    this.getQueryParamResult(); //remove or change for hook
+    this.getQueryParamResult();
   }
 }

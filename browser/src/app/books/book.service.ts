@@ -34,7 +34,7 @@ export class BookService {
   }
 
   //Add book to favorite (set favorite flag to true)
-  PutBookOnShelf(book: any): Observable<any> {
+  setFlag(book: any): Observable<any> {
     return this.http.get<any>(this.url +'shelf/' + book).pipe(
       // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
       catchError(this.handleError)
@@ -50,8 +50,8 @@ export class BookService {
   }
 
   //Delete one book from DB
-  deleteBookFromDB(): Observable<any> {
-    return this.http.get<any>(this.url +'delete/').pipe(
+  deleteBookFromDB(bookId:number): Observable<any> {
+    return this.http.get<any>(this.url +'delete/' + bookId).pipe(
       tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
       catchError(this.handleError)
     );
@@ -72,6 +72,8 @@ export class BookService {
       // A client-side or network error occurred. Handle it accordingly.
       console.log('An error occurred:', err.error.message);
       errMsg = err.error.message;
+    } else if (err.error.status === 204) {
+      console.log(`Backend returned code ${err.status}`);
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,

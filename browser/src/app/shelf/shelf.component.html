@@ -20,8 +20,11 @@
   </div>
 </div>
 
-<div *ngFor="let book of books | sort: sortoption">
-  <app-book-tile [bookItem]="book"></app-book-tile>
+<div >
+  <app-book-tile
+    #child *ngFor="let book of books | sort: sortoption"
+    [bookItem]="book"
+    (removeBookFromShelf)="updatePage()"></app-book-tile>
 </div>
 <div *ngIf="!books" class="d-flex justify-content-center">
   <strong>Loading...</strong>

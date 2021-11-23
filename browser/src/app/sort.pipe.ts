@@ -45,7 +45,17 @@ export class SortPipe implements PipeTransform {
           return 0;
         }
       });
-    } else {
+    } else if (args === 'bookId') {
+      return value.sort((a: any, b: any) => {
+        if (a.bookid < b.bookid) {
+          return -1;
+        } else if (a.bookid > b.bookid) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+    }  else {
       return value;
     }
   }

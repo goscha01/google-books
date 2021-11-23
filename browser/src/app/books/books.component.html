@@ -1,21 +1,31 @@
-<app-search-bar
+<div class="container-fluid">
+  <app-search-bar
   [navigationFunction]="dummy"
   (querySendingEvent)="receiveQuery($event)"
 ></app-search-bar>
+
 <h5 class="alert alert-success">
   Your current search request is: {{ searchQuery }}
 </h5>
-<div *ngIf="books && !isInitialQueryEmpty">
+
+<div *ngIf="books && !isInitialQueryEmpty && !errorMessage">
   <div *ngFor="let book of books">
     <app-book-tile [bookItem]="book"></app-book-tile>
   </div>
 </div>
-<div *ngIf="!books" class="d-flex justify-content-center">
+
+<div *ngIf="!books&&!errorMessage" class="d-flex justify-content-center">
   <strong>Loading...</strong>
   <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
 </div>
+
+<div *ngIf="errorMessage" class="d-flex justify-content-center">
+  <strong>{{ errorMessage }}</strong>
+</div>
+
 <h5 class="alert alert-info">Recomended books</h5>
-<div *ngIf="isInitialQueryEmpty">
+
+<div *ngIf="isInitialQueryEmpty && !errorMessage">
   <div *ngFor="let book of books">
     <app-book-tile [bookItem]="book"></app-book-tile>
   </div>
@@ -23,3 +33,5 @@
 
 
 
+
+</div>

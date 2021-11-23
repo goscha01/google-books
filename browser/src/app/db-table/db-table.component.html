@@ -1,37 +1,30 @@
-<div class="container">
+<div class="container-fluid">
   <h5 class="alert alert-info">Books database</h5>
   <div class="row">
-    <div class="col">
-      <button class="btn btn-outline-secondary" (click)="deleteData()">
-        Delete book
-      </button>
-      <button class="btn btn-outline-secondary" (click)="deleteAllData()">
+    <div class="col-4">
+
+      <button class="btn btn-outline-danger" (click)="deleteAllData()">
         Delete all
       </button>
     </div>
-    <div class="col">
-      <div class="row">
-        <div class="col">
-          <p style="text-align: right">Sort</p>
-        </div>
-        <div class="col">
+    <div class="col-8">
           <select
             class="form-select"
-            aria-label="Sort the list"
             id="sorting"
             [(ngModel)]="sortoption"
+
           >
-            <option value="id">ID</option>
-            <option value="searchword">Query</option>
-            <option value="date">Date</option>
+            <option  value='0' >--Sort the table--</option>
+            <option value="id">Table Id</option>
+            <option value="bookId">Book Id</option>
+            <option value="searchword">Search Word</option>
+            <option value="date">Time</option>
             <option value="favorite">Favorite</option>
           </select>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div *ngIf="books">
+    </div>
+
+  <div class="table-responsive" id="no-table" *ngIf="books">
     <table class="table table-light">
       <thead>
         <tr>
@@ -41,16 +34,22 @@
           <th>Query</th>
           <th>Dat&Time</th>
           <th>Favorite</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody *ngFor="let book of books | sort: sortoption">
         <tr>
-          <td>{{ book.id }}</td>
-          <td>{{ book.bookid }}</td>
-          <td>{{ book.title }}</td>
-          <td>{{ book.searchword }}</td>
-          <td>{{ book.tstamp }}</td>
-          <td>{{ book.favorite }}</td>
+          <td data-title="ID">{{ book.id }}</td>
+          <td data-title="Book Id">{{ book.bookid }}</td>
+          <td data-title="Title">{{ book.title }}</td>
+          <td data-title="Query">{{ book.searchword }}</td>
+          <td data-title="Dat&Time">{{ book.tstamp | date: 'short'}}</td>
+          <td data-title="Favorite">{{ book.favorite }}</td>
+          <td>
+            <button class="btn btn-outline-danger btn-sm"  (click)="deleteData(book.id)">
+            Delete book
+          </button>
+        </td>
         </tr>
       </tbody>
     </table>

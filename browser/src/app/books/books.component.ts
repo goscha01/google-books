@@ -19,6 +19,7 @@ export class BooksComponent implements OnInit {
     this.searchQuery
       ? (this.isInitialQueryEmpty = false)
       : (this.isInitialQueryEmpty = true);
+
   }
 
   ngOnInit(): void {
@@ -31,6 +32,7 @@ export class BooksComponent implements OnInit {
     this.isInitialQueryEmpty = false;
     this.bookService.query = query;
     this.searchQuery = this.bookService.query;
+
     this.getQueryParamResult(this.searchQuery);
   }
 
@@ -38,7 +40,15 @@ export class BooksComponent implements OnInit {
   getQueryParamResult(query: string): void {
     this.bookService.getBookQueryParam(query).subscribe(
       (books: any) => {
-        this.books = books;
+        console.log(books)
+        if(books === null) {
+          this.errorMessage = 'No books found'
+        } else {
+          this.errorMessage = ''
+          this.books = books;
+        }
+
+        console.log(this.errorMessage)
       },
       (error: any) => (this.errorMessage = error as any)
     );

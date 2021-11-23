@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { BookService } from '../books/book.service';
 
 @Component({
@@ -8,37 +8,62 @@ import { BookService } from '../books/book.service';
 })
 export class BookTileComponent implements OnInit {
   @Input() bookItem: any;
+  @Output() removeBookFromShelf = new EventEmitter<any>();
 
   errorMessage!: string;
-  isFavoriteButtonClicked: boolean = false;
-  buttonLabel!: string;
   isFavorite!: boolean;
   defaultCover: any = 'assets/bookcover.png';
+  buttonValue!:string;
+  buttonColor!:string;
+  textlength!:number;
+  innerWidth!:number;
 
   constructor(private bookService: BookService) {}
 
   ngOnInit(): void {
-    this.isFavorite = this.bookItem.favorite;
-    this.isFavorite
-      ? (this.isFavoriteButtonClicked = true)
-      : (this.isFavoriteButtonClicked = false);
+    this.isFavorite = this.bookItem.favorite
+    this.toggleButton()
+    this.onResize()
   }
-  addToLibrary(favBook: any) {
-    this.toggleButton();
-    this.setLibraryFlag(favBook, this.isFavoriteButtonClicked);
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.innerWidth = window.innerWidth;
+
+    if(this.innerWidth < 460) {
+      this.textlength = 100
+    } else if(this.innerWidth < 860) {
+      this.textlength = 300
+    } else {
+      this.textlength = 500
+    }
   }
 
   toggleButton() {
-    this.isFavoriteButtonClicked = !this.isFavoriteButtonClicked;
+    console.log('toggleButton')
+    if(this.isFavorite) {
+      this.buttonValue = 'Remove from Library';
+      this.buttonColor = 'btn-warning';
+      } else {
+      this.buttonValue = 'Add to Library';
+      this.buttonColor = 'btn-outline-secondary' ;
+    }
+
   }
 
-  setLibraryFlag(bookId: string, favFlag: boolean): void {
-    var qarr = [favFlag, bookId];
-    this.bookService.PutBookOnShelf(qarr).subscribe(
+  setLibraryFlag(bookId: string): void {
+    this.isFavorite = !this.isFavorite
+    var qarr = [this.isFavorite, bookId];
+    this.bookService.setFlag(qarr).subscribe(
       (favorite: any) => {
-        this.isFavorite = favorite.bookid;
+        this.isFavorite = favorite;
+        this.removeBookFromShelf.emit()
       },
       (error: any) => (this.errorMessage = error as any)
     );
+    this.toggleButton()
+
+
   }
+
 }

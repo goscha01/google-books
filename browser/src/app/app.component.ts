@@ -11,6 +11,7 @@ export class AppComponent {
   defaultBook: any = 'testBook';
   errorMessage!: string;
   searchQuery: String = '';
+  isCollapsed:boolean = true;
 
   constructor(private router: Router) {}
 

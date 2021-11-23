@@ -1,22 +1,24 @@
-<div class="card">
+<div class="container-fluid">
+  <div class="card">
   <div class="card-horizontal">
-    <div class="img-square-wrapper">
+    <div class="img-square-wrapper d-flex flex-wrap align-items-center">
       <img
-        class="card-img-left"
+        class="card-img-left img-thumbnail"
         [src]="bookItem.coverimage ? bookItem.coverimage : defaultCover"
         alt="book thumbnail"
       />
     </div>
     <div class="card-body">
       <h4 class="card-title">{{ bookItem.title }}</h4>
-      <h5>{{ bookItem.subtitle }}</h5>
+      <h5 class="card-title-secondary">{{ bookItem.subtitle }}</h5>
       <div class="card-subtitle">
-        <h6>{{ bookItem.authors }}</h6>
-        <h6>"{{ bookItem.pablisher }}"</h6>
-        <h6 class="year">{{ bookItem.publisherdate }}</h6>
+        <h6 class="card-subtitle autors">{{ bookItem.authors }}</h6>
+        <h6 class="card-subtitle pablisher">"{{ bookItem.pablisher }}"</h6>
+        <h6 class="card-subtitle year">{{ bookItem.publisherdate }}</h6>
       </div>
 
-      <p class="card-text">{{ bookItem.descr | slice: 1:500 }} ...</p>
+      <p class="card-text" >{{ bookItem.descr | slice: 1:textlength}} ...</p>
+
     </div>
   </div>
   <div class="card-footer">
@@ -25,14 +27,11 @@
     <input
       type="button"
       class="btn"
-      [ngClass]="{
-        'btn-outline-secondary': !isFavoriteButtonClicked,
-        'btn-warning': isFavoriteButtonClicked
-      }"
-      (click)="addToLibrary(bookItem.bookid)"
-      [value]="
-        isFavoriteButtonClicked ? 'Remove from Library' : 'Add to Library'
-      "
+      [ngClass]="buttonColor"
+      (click)="setLibraryFlag(bookItem.bookid)"
+      [value]="buttonValue"
     />
   </div>
+</div>
+
 </div>

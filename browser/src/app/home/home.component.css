@@ -2,16 +2,25 @@
   text-align: center;
   margin-top: 15%;
 }
-.form-inline {
-  width: 90%;
-  margin: 0 auto;
+.image-container {
+  width:"90%";
+  position: relative;
+  min-width: 200px;
+  max-width: 560px;
+  align-items: center;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  align-items: center;
 }
 
 .books {
   color: rgb(66, 133, 244);
-  top: -40px;
-  right: -180px;
-  position: relative;
+  top: 71%;
+  left: 78%;
+  position: absolute;
   font-size: 1.5rem;
 }
 .search-button {
@@ -21,4 +30,12 @@
 i {
   padding-left: 20px;
   padding-right: 20px;
+}
+
+
+@media screen and (max-width: 460px) {
+  .books {
+    font-size: 1rem;
+  }
+
 }

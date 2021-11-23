@@ -1,3 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+
+body {
+  padding:0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding:0;
+}
+
+@media only screen and (max-width:880px) {
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    padding:0;
+  }
+}
+
+@media only screen and (max-width:440px) {
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    padding:0;
+  }
+}
