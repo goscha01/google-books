@@ -8,7 +8,7 @@ const router = express.Router();
 
   
   router.get('/', (req, res) => {
-    res.send('main path / works on ELB!')
+    res.send('main path / router works!')
   })
   
 
@@ -18,13 +18,11 @@ const router = express.Router();
       db.conn(q.selectFromDB, [req.params.param])
       .then(data => {
       if(data.rows.length) {
-        console.log(data.rows)
         res.send(data.rows)
       } else {
         api.axiosCall(req, res)
         .then(response => {
           res.status(200);
-          console.log(response)
           var dbData = response.map(item => Object.values(item)) //converts array of objects into array of arrays
           db.conn(q.insertMultiQuery, dbData, 1);
           res.send(response);
@@ -35,20 +33,17 @@ const router = express.Router();
     //Get all books from DB
     router.get('/db/', async (req, result) => {
         var qres = await db.conn(q.selectAllQuery)
-      console.log(qres.rows)
         result.send(qres.rows)
     })
     
     //Get all books which are favorite = true
     router.get('/shelf/', async (req, result) => {
         var qres = await db.conn(q.selectAllFromShelfQuery)
- 
-        result.send(qres.rows)
+         result.send(qres.rows)
     })
     
     //Delete 1 in a table in DB
     router.get('/delete/', async (req, result) => {
-
      await db.conn(q.deleteQuery)
 
     })
