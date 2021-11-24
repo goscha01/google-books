@@ -6,6 +6,10 @@ const http = require('http');
 const api = require("./routes");
 const app = express();
 
+
+
+
+
 //Enabling CORS
  app.use(function (req, res, next) {
       res.header("Access-Control-Allow-Origin", "*");
@@ -27,7 +31,7 @@ app.get('*', (req, res) => {
 
 
 //Get port from environment and store in Express. If not - 8080 is default port
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 8080;
 app.set('port', port);
 
 //Create HTTP server.
