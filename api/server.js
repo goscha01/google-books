@@ -15,14 +15,14 @@ const app = express();
       });
 
 // Point static path to dist
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Set our api routes
 app.use('/', api);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
+  res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 
