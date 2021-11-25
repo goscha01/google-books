@@ -31,7 +31,7 @@ app.get('*', (req, res) => {
 
 
 //Get port from environment and store in Express. If not - 8080 is default port
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 3000;
 app.set('port', port);
 
 //Create HTTP server.

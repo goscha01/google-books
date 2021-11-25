@@ -70,12 +70,14 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
+           "configurations": {
             "production": {
-              "browserTarget": "full-stack-challenge:build:production"
+              "browserTarget": "full-stack-challenge:build:production",
+              "port": 8080
             },
             "development": {
-              "browserTarget": "full-stack-challenge:build:development"
+              "browserTarget": "full-stack-challenge:build:development",
+              "port": 8080
             }
           },
           "defaultConfiguration": "development"
