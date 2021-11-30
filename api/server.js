@@ -22,7 +22,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../public')));
 
 // Set our api routes
-app.use('/', api);
+app.use('/api', api);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {

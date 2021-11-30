@@ -11,7 +11,7 @@ export class BookService {
   qureyData!: any[];
   query!: string;
   // url:string = 'http://ec2-54-147-18-175.compute-1.amazonaws.com/' //aws node server
-  url: string = 'http://localhost:3000/' //local url
+  url: string = 'http://localhost:3000/api/' //local url
   // url: string = 'http://node-server-google-books.us-east-1.elasticbeanstalk.com/' //ELB pipeline server url
 
 
@@ -27,8 +27,9 @@ export class BookService {
 
   //Get query data from DB
   getBooksFromDB(): Observable<any> {
+    console.log(this.url +'db/')
     return this.http.get<any>(this.url +'db/').pipe(
-      // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
+      tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
