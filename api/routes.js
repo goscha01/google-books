@@ -32,7 +32,7 @@ const router = express.Router();
    
     //Get all books from DB
     router.get('/db/', async (req, result) => {
-      console.log(req)
+      // console.log(req)
         var qres = await db.conn(q.selectAllQuery)
         // console.log(qres.rows)
         result.send(qres.rows)

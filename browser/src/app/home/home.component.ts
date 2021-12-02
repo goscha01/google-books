@@ -21,4 +21,10 @@ export class HomeComponent implements OnInit {
   navigation = (): void => {
     this.router.navigate(['/books']);
   };
+
+
+  checkAll(event: any) {
+    console.log(event.target.checked)
+    console.log("checked")
+  }
 }

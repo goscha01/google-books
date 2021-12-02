@@ -15,3 +15,19 @@
   <p>Search the world's most comprehensive index of full-text books.</p>
   <a [routerLink]="['/shelf']">My library</a>
 </div>
+
+<div style="text-align: center;">
+<input type="checkbox" id="main"(change)="checkAll($event)" >
+<label for="main" >Main checkbox</label>
+<ul>
+  <input type="checkbox" id="One" value="one" checked >
+  <label for="one">One</label><br>
+  <input type="checkbox" id="One" value="two">
+  <label for="two">Two</label><br>
+  <input type="checkbox" id="One" value="three">
+  <label for="three">Three</label >
+</ul>
+</div>
+
+
+
