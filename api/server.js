@@ -2,7 +2,6 @@
 
 const express = require('express');
 const path = require('path');
-const http = require('http');
 const api = require("./routes");
 const app = express();
 
@@ -34,11 +33,8 @@ app.get('*', (req, res) => {
 var port = process.env.PORT || 3000;
 app.set('port', port);
 
-//Create HTTP server.
- 
-const server = http.createServer(app);
 
 //Listen on provided port, on all network interfaces.
  
-server.listen(port, 
-  () => console.log(`API running on localhost:${port}!`));
+app.listen(port, 
+  () => console.log(`API now running on localhost:${port}!`));
