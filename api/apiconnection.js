@@ -3,11 +3,11 @@ require("dotenv").config();
 const axios = require("axios");
 
 
-// const API_KEY = 'AIzaSyC3WtNnKDXtglXeJLTPWVVzpPLGTyd59O4'
-// BOOKS_URL = 'https://www.googleapis.com/books/v1/volumes?'
+const API_KEY = 'AIzaSyC3WtNnKDXtglXeJLTPWVVzpPLGTyd59O4'
+BOOKS_URL = 'https://www.googleapis.com/books/v1/volumes?'
 
-const API_KEY = process.env.API_KEY;
-const BOOKS_URL = process.env.BOOKS_URL;
+// const API_KEY = process.env.API_KEY;
+// const BOOKS_URL = process.env.BOOKS_URL;
 var currentdate = new Date();
 
 module.exports.axiosCall = axiosCall;

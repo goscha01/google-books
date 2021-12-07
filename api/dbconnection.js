@@ -1,10 +1,10 @@
 const format = require('pg-format');
 require('dotenv').config();
 const { Pool } = require('pg')
-// const  POSTGRES_URL='postgres://dviwjwhj:kz86i7OGuBGXCa6YAXPuivru98-k-CgC@fanny.db.elephantsql.com/dviwjwhj'
+const  POSTGRES_URL='postgres://dviwjwhj:kz86i7OGuBGXCa6YAXPuivru98-k-CgC@fanny.db.elephantsql.com/dviwjwhj'
 
-const databaseConfig = { connectionString: process.env.POSTGRES_URL };
-// const databaseConfig = { connectionString: POSTGRES_URL };
+// const databaseConfig = { connectionString: process.env.POSTGRES_URL };
+const databaseConfig = { connectionString: POSTGRES_URL };
 const pool = new Pool(databaseConfig);
 
 
