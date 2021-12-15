@@ -11,6 +11,7 @@ BOOKS_URL = 'https://www.googleapis.com/books/v1/volumes?'
 var currentdate = new Date();
 
 module.exports.axiosCall = axiosCall;
+
  async function axiosCall(req, res) {
 
   var response =  await axios.get(BOOKS_URL, {
@@ -46,7 +47,7 @@ function mapData(apiData, searchword) {
       ? data.volumeInfo.imageLinks.smallThumbnail
       : null,
     searchword: searchword,
-    tstamp: currentdate,
+
   }));
   return newApiData;
 }
