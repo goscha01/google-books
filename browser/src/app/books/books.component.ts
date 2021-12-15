@@ -40,7 +40,7 @@ export class BooksComponent implements OnInit {
   getQueryParamResult(query: string): void {
     this.bookService.getBookQueryParam(query).subscribe(
       (books: any) => {
-        console.log(books)
+        // console.log(books)
         if(books === null) {
           this.errorMessage = 'No books found'
         } else {
@@ -48,7 +48,7 @@ export class BooksComponent implements OnInit {
           this.books = books;
         }
 
-        console.log(this.errorMessage)
+
       },
       (error: any) => (this.errorMessage = error as any)
     );

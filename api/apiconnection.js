@@ -3,12 +3,13 @@ require("dotenv").config();
 const axios = require("axios");
 
 
-const API_KEY = 'AIzaSyC3WtNnKDXtglXeJLTPWVVzpPLGTyd59O4'
-BOOKS_URL = 'https://www.googleapis.com/books/v1/volumes?'
+// const API_KEY = 'AIzaSyC3WtNnKDXtglXeJLTPWVVzpPLGTyd59O4'
+// BOOKS_URL = 'https://www.googleapis.com/books/v1/volumes?'
 
-// const API_KEY = process.env.API_KEY;
-// const BOOKS_URL = process.env.BOOKS_URL;
-var currentdate = new Date();
+//env veriables saved in the api route folde. While deploying the env shouldn be set in deployment enviroment
+const API_KEY = process.env.API_KEY;
+const BOOKS_URL = process.env.BOOKS_URL;
+
 
 module.exports.axiosCall = axiosCall;
 

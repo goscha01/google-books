@@ -1,5 +1,6 @@
 <div class="container-fluid">
   <h5 class="alert alert-info">Books database</h5>
+  <p class="aler alert-danger" *ngIf="succesMessage">{{succesMessage}}</p>
   <div class="row">
     <div class="col-4">
 
@@ -46,7 +47,7 @@
           <td data-title="Dat&Time">{{ book.tstamp | date: 'short'}}</td>
           <td data-title="Favorite">{{ book.favorite }}</td>
           <td>
-            <button class="btn btn-outline-danger btn-sm"  (click)="deleteData(book.id)">
+            <button class="btn btn-outline-danger btn-sm"  (click)="deleteData(book.bookid)">
             Delete book
           </button>
         </td>

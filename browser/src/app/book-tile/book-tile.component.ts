@@ -40,7 +40,6 @@ export class BookTileComponent implements OnInit {
   }
 
   toggleButton() {
-    console.log('toggleButton')
     if(this.isFavorite) {
       this.buttonValue = 'Remove from Library';
       this.buttonColor = 'btn-warning';
@@ -53,7 +52,8 @@ export class BookTileComponent implements OnInit {
 
   setLibraryFlag(bookId: string): void {
     this.isFavorite = !this.isFavorite
-    var qarr = [this.isFavorite, bookId];
+    var qarr = {fav: this.isFavorite, id: bookId};
+    console.log(qarr)
     this.bookService.setFlag(qarr).subscribe(
       (favorite: any) => {
         this.isFavorite = favorite;

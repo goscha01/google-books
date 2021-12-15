@@ -1,11 +1,17 @@
-<div class="container-fluid g-0">
+
+
+
+
+  <div class="container-fluid g-0">
+
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <button class="btn btn-primary btn-sm d-flex justify-content-end" >Sign In</button>
+
+          <app-auth-button  ></app-auth-button>
           <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed" id="navbarSupportedContent">
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -31,8 +37,17 @@
         </div>
 
       </nav>
-    </div>
+
+</div>
+
+<div class="d-flex justify-content-center" *ngIf="auth.isLoading$ | async; else loaded" >
+  <strong>Loading...</strong>
+  <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+</div>
 
 
-    <router-outlet></router-outlet>
+<ng-template #loaded>
 
+  <router-outlet></router-outlet>
+
+</ng-template>

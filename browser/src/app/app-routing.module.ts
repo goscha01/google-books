@@ -5,14 +5,15 @@ import { BooksComponent } from './books/books.component';
 import { DbTableComponent } from './db-table/db-table.component';
 import { HomeComponent } from './home/home.component';
 import { ShelfComponent } from './shelf/shelf.component';
+import { AuthGuard } from '@auth0/auth0-angular';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'books', component: BooksComponent },
-  { path: 'tile', component: BookTileComponent },
-  { path: 'shelf', component: ShelfComponent },
-  { path: 'database', component: DbTableComponent },
+  { path: 'books', component: BooksComponent, canActivate: [AuthGuard] },
+  { path: 'tile', component: BookTileComponent, canActivate: [AuthGuard], },
+  { path: 'shelf', component: ShelfComponent, canActivate: [AuthGuard], },
+  { path: 'database', component: DbTableComponent, canActivate: [AuthGuard], },
   { path: '**', component: HomeComponent },
 ];
 

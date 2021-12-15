@@ -10,6 +10,7 @@ export class DbTableComponent implements OnInit {
   sortoption: string='0';
   books!: any[];
   errorMessage!: string;
+  succesMessage!: string;
 
   constructor(private bookService: BookService) {}
 
@@ -32,9 +33,15 @@ export class DbTableComponent implements OnInit {
   deleteData(bookId:any) {
     console.log(bookId)
     this.bookService.deleteBookFromDB(bookId).subscribe(
-      (books: any) => {
-        this.books = books
+      (result: any) => {
+        // this.books = books
         this.getQueryParamResult();
+        // console.log(result.message)
+        this.succesMessage = result.message;
+        setTimeout(() => {
+          this.succesMessage = '';
+       }, 3000)
+
       },
       (error: any) => (this.errorMessage = error as any)
     );
@@ -44,7 +51,7 @@ export class DbTableComponent implements OnInit {
   //Delete all books from DB
   deleteAllData() {
     this.bookService.deleteAllBooksFromDB().subscribe(
-      (books: any) => (this.books = books),
+      (result: any) => (this.succesMessage = result.message),
       (error: any) => (this.errorMessage = error as any)
     );
     this.getQueryParamResult();

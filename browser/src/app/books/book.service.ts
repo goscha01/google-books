@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
-
+import { environment  as  env}  from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
@@ -29,14 +29,15 @@ export class BookService {
   getBooksFromDB(): Observable<any> {
     console.log(this.url +'db/')
     return this.http.get<any>(this.url +'db/').pipe(
-      tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
+      // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
 
   //Add book to favorite (set favorite flag to true)
-  setFlag(book: any): Observable<any> {
-    return this.http.get<any>(this.url +'shelf/' + book).pipe(
+  setFlag(data: any): Observable<any> {
+    console.log(data)
+    return this.http.get<any>(this.url +'shelf/' + data.id +"/" + data.fav).pipe(
       // tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
       catchError(this.handleError)
     );
@@ -51,7 +52,7 @@ export class BookService {
   }
 
   //Delete one book from DB
-  deleteBookFromDB(bookId:number): Observable<any> {
+  deleteBookFromDB(bookId:string): Observable<any> {
     return this.http.get<any>(this.url +'delete/' + bookId).pipe(
       tap((data: any) => console.log('Data Fetched:' + JSON.stringify(data))),
       catchError(this.handleError)
